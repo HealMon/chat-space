@@ -18,8 +18,8 @@ Things you may want to cover:
 |------|----|-------|
 |body|text|
 |image|string|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -29,8 +29,8 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
@@ -39,9 +39,10 @@ Things you may want to cover:
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|group_name|varchar(255)|null: false|
+|name|string|null: false|
 
 ### Association
+- has_many :groups_users
 - has_many :users, through :groups_users
 - has_many :messages
 
@@ -50,13 +51,14 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |email|varchar(255)|null: false|
-|user_name|varchar(255)|null: false|
+|name|string|null: false|
 |encrypted_password|varchar(255)|null: false|
 |reset_password_token|varchar(255)|
 |reset_password_sent_at|datetime|
 |remember_created_at|datetime|
 
 ### Association
+- has_many :groups_users
 - has_many :groups, through :groups_users
 - has_many :messages
 
