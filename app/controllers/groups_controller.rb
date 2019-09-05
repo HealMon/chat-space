@@ -21,6 +21,10 @@ class GroupsController < ApplicationController
   end
   
   def update
+    respond_to do |format|
+      format.html
+      format.json
+    end
     if @group.update(group_params)
       redirect_to group_messages_path(@group), notice: 'グループを編集しました'
     else
